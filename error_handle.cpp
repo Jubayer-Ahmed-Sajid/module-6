@@ -42,6 +42,13 @@ void insert_at_tai(Node *&head, int v)
 
 void print_node(Node *head)
 {
+    if (head == NULL)
+    {
+        cout << endl
+             << "You do not have any node" << endl
+             << endl;
+        return;
+    }
     cout << "Your linked list: ";
     Node *tmp = head;
     while (tmp != NULL)
@@ -49,7 +56,8 @@ void print_node(Node *head)
         cout << tmp->val << " ";
         tmp = tmp->next;
     }
-    cout << endl;
+    cout << endl
+         << endl;
 };
 void insert_at_any_position(Node *head, int pos, int val)
 {
@@ -57,7 +65,15 @@ void insert_at_any_position(Node *head, int pos, int val)
     Node *tmp = head;
     for (int i = 1; i <= pos - 1; i++)
     {
-        tmp = tmp->next;
+        if (tmp == NULL)
+        {
+            cout << endl
+                 << "Invalid Index" << endl
+                 << endl;
+            return;
+        }
+        else
+            tmp = tmp->next;
     }
     newNode->next = tmp->next;
     tmp->next = newNode;
@@ -81,9 +97,24 @@ void delete_from_position(Node *head, int pos)
     Node *temp = head;
     for (int i = 1; i <= pos - 1; i++)
     {
+        if (temp == NULL)
+        {
+            cout << endl
+                 << "Invalid Index!!" << endl
+                 << endl;
+            return;
+        }
+
         temp = temp->next;
     }
     Node *deleteNode = temp->next;
+    if (temp->next == NULL)
+    {
+        cout << endl
+             << "Invalid Index!!" << endl
+             << endl;
+        return;
+    }
     temp->next = temp->next->next;
     delete deleteNode;
     cout << endl
@@ -93,6 +124,13 @@ void delete_from_position(Node *head, int pos)
 }
 void delete_head(Node *&head)
 {
+    if (head == NULL)
+    {
+        cout << endl
+             << "You do not have head!!" << endl
+             << endl;
+        return;
+    }
     Node *deleteNode = head;
     head = head->next;
     delete deleteNode;
@@ -106,13 +144,13 @@ int main()
     Node *head = NULL;
     while (true)
     {
-        cout << "Option 1: Enter new node " << endl;
-        cout << "Option 2: Print nodes" << endl;
-        cout << "Option 3: Enter at postion" << endl;
-        cout << "Option 4: Enter at head" << endl;
-        cout << "Option 5:Delete from postion" << endl;
-        cout << "Option 6: Delete head" << endl;
-        cout << "Option 7: Break" << endl;
+        cout << "Option 1: Enter new node " << endl;    // done
+        cout << "Option 2: Print nodes" << endl;        // done
+        cout << "Option 3: Enter at postion" << endl;   // done
+        cout << "Option 4: Enter at head" << endl;      // done
+        cout << "Option 5:Delete from postion" << endl; // done
+        cout << "Option 6: Delete head" << endl;        // done
+        cout << "Option 7: Terminate" << endl;
         int op;
         cin >> op;
         if (op == 1)
